@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SGBD Mory — Systeme de Gestion</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23006725'/%3E%3Cstop offset='100%25' stop-color='%239F1A16'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Cg stroke='%23FBE3E1' stroke-width='1.6' fill='none' opacity='0.9'%3E%3Cline x1='24' y1='15' x2='14' y2='24'/%3E%3Cline x1='24' y1='15' x2='34' y2='24'/%3E%3Cline x1='14' y1='24' x2='24' y2='33'/%3E%3Cline x1='34' y1='24' x2='24' y2='33'/%3E%3Cline x1='14' y1='24' x2='34' y2='24'/%3E%3C/g%3E%3Ccircle cx='24' cy='15' r='3.6' fill='%23FFFFFF'/%3E%3Ccircle cx='14' cy='24' r='3.6' fill='%23FFFFFF'/%3E%3Ccircle cx='34' cy='24' r='3.6' fill='%23FFFFFF'/%3E%3Ccircle cx='24' cy='33' r='3.6' fill='%23FFFFFF'/%3E%3C/svg%3E">
+<!-- Leaflet (cartographie) charge via CDN -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app-root"></div>
+<div id="toast-host"></div>
+
+<!-- Acces aux donnees : API serveur (remplace IndexedDB) -->
+<script src="config.js"></script>
+<script src="api-client.js"></script>
+
+<!-- Leaflet (moteur cartographique) charge via CDN -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Application -->
+<script src="app.js"></script>
+</body>
+</html>

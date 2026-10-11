@@ -1,0 +1,30 @@
+# Blueprint Render (optionnel) : crée la base PostgreSQL + le service web en un clic.
+databases:
+  - name: sgbd-pastef-db
+    plan: free
+    databaseName: sgbd_pastef
+    user: sgbd
+
+services:
+  - type: web
+    name: sgbd-pastef-rufisque
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sgbd-pastef-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false   # Render vous le demandera à la création

@@ -1,0 +1,21 @@
+# Netlify héberge UNIQUEMENT l'interface (dossier public/). Le serveur Node.js
+# et la base PostgreSQL restent sur Render : Netlify ne sait pas exécuter un
+# serveur permanent. Renseignez l'adresse de l'API dans public/config.js.
+[build]
+  publish = "public"
+
+# --- Variante « sans CORS » (facultative) --------------------------------------
+# Au lieu de renseigner config.js, Netlify peut relayer /api/* vers Render ;
+# l'interface croit alors parler à son propre domaine. Décommentez et remplacez
+# l'adresse, puis laissez window.SYSPLANS_API_URL = '' dans config.js.
+# [[redirects]]
+#   from   = "/api/*"
+#   to     = "https://VOTRE-SERVICE.onrender.com/api/:splat"
+#   status = 200
+#   force  = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

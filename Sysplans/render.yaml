@@ -1,0 +1,33 @@
+# Blueprint Render : crée en un clic la base PostgreSQL ET le service web.
+# (Render › New + › Blueprint › choisir le dépôt GitHub)
+databases:
+  - name: sysplans-db
+    databaseName: sysplans
+    user: sysplans
+    ipAllowList: []       # seul le service web peut s'y connecter (connexion interne)
+    plan: free            # ⚠ la base gratuite expire après 30 jours et n'a pas de sauvegardes :
+                          #   passez à « basic-256mb » (ou plus) pour un usage réel.
+
+services:
+  - type: web
+    name: sysplans
+    runtime: node
+    plan: free            # s'endort après 15 min sans trafic ; « starter » évite la mise en veille
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/sante
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sysplans-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_IDENTIFIANT
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false        # Render vous demandera de la saisir à la création
+      - key: CORS_ORIGINS
+        sync: false        # facultatif : adresse Netlify si l'interface y est hébergée
